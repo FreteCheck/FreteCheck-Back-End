@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: fretecheck-db-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: fretecheck
+      MYSQL_USER: freteuser
+      MYSQL_PASSWORD: fretepass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - mysqldata:/var/lib/mysql
+
+volumes:
+  mysqldata:
+
