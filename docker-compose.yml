@@ -2,20 +2,20 @@ version: "3.8"
 
 services:
   db:
-    image: postgres:15
-    container_name: fretecheck-db
+    image: mysql:8.0
+    container_name: fretecheck-db-mysql
     restart: always
     environment:
-      POSTGRES_USER: freteuser
-      POSTGRES_PASSWORD: fretepass
-      POSTGRES_DB: fretecheck
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: fretecheck
+      MYSQL_USER: freteuser
+      MYSQL_PASSWORD: fretepass
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      # Arquivo que roda na inicialização (cria o banco e as tabelas)
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
-      # Volume para persistir dados localmente
-      - pgdata:/var/lib/postgresql/data
+      - mysqldata:/var/lib/mysql
 
 volumes:
-  pgdata:
+  mysqldata:
+

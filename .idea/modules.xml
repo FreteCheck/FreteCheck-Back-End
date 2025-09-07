@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/negociaBot-Back-End.iml" filepath="$PROJECT_DIR$/.idea/negociaBot-Back-End.iml" />
+      <module fileurl="file://$PROJECT_DIR$/postgres-config/postgres-config.iml" filepath="$PROJECT_DIR$/postgres-config/postgres-config.iml" />
     </modules>
   </component>
 </project>

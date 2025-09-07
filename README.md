@@ -1,31 +1,33 @@
 # 💡 Sistema de Fretes - Banco de Dados
 
 ## 📦 Banco de Dados
-Este projeto utiliza **PostgreSQL** com **Docker Compose** para facilitar a configuração e garantir que toda a equipe utilize o mesmo ambiente.  
-A estrutura inicial do banco (tabelas) está definida no arquivo [`schema.sql`](./schema.sql).
+
+Este projeto utiliza **MySQL 8.0** com **Docker Compose** para facilitar a configuração e garantir que toda a equipa utilize o mesmo ambiente.  
+A estrutura inicial da base de dados (tabelas) está definida no ficheiro `schema.sql`.
 
 ---
 
-## ⚙️ Requisitos para Iniciar o Banco
+## ⚙️ Requisitos para Iniciar a Base de Dados
 
-Antes de rodar, certifique-se de ter instalado na sua máquina:
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+Antes de rodar, certifique-se de ter instalado na sua máquina uma ferramenta de gestão de contentores:
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- ou [Rancher Desktop](https://rancherdesktop.io/) (uma excelente alternativa que se mostrou eficaz durante o desenvolvimento)
 
 ---
 
-## 🚀 Como Rodar o Banco de Dados
+## 🚀 Como Rodar a Base de Dados
 
 ```bash
-# Clona este repositório
-$ git clone https://github.com/FreteCheck/FreteCheck-Back-End.git
+# Clone este repositório
+git clone https://github.com/FreteCheck/FreteCheck-Back-End.git
 
-# Acessa a pasta do projeto
-$ cd FreteCheck-Back-End
+# Aceda à pasta do projeto
+cd FreteCheck-Back-End
 
-# Sobe o container do banco
-$ docker-compose up -d
-```
+# Suba o contentor da base de dados (execute o terminal como administrador)
+docker-compose up -d
+
 
 Após executar o comando acima, o banco estará rodando em segundo plano.
 
@@ -34,12 +36,12 @@ Após executar o comando acima, o banco estará rodando em segundo plano.
 ## 🛠️ Acesso ao Banco de Dados
 
 - **Host:** `localhost`
-- **Porta:** `5432`
+- **Porta:** `3306`
 - **Usuário:** `freteuser`
 - **Senha:** `fretepass`
 - **Database:** `fretecheck`
 
-Você pode acessar usando ferramentas como **DBeaver**, **PgAdmin** ou até pelo terminal:
+Você pode acessar usando ferramentas como **DBeaver**, **PgAdmin**, **MySQL Workbench** ou até pelo terminal:
 
 ```bash
 psql -h localhost -U freteuser -d fretecheck
