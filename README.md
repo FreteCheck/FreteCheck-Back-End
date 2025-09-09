@@ -1,4 +1,4 @@
-# 💡 Sistema de Fretes - Banco de Dados
+# 💡 Sistema de Fretes - Banco de Dados e API
 
 ## 📦 Banco de Dados
 
@@ -27,7 +27,7 @@ cd FreteCheck-Back-End
 
 # Suba o contentor da base de dados (execute o terminal como administrador)
 docker-compose up -d
-
+```
 
 Após executar o comando acima, o banco estará rodando em segundo plano.
 
@@ -35,16 +35,67 @@ Após executar o comando acima, o banco estará rodando em segundo plano.
 
 ## 🛠️ Acesso ao Banco de Dados
 
-- **Host:** `localhost`
-- **Porta:** `3306`
-- **Usuário:** `freteuser`
-- **Senha:** `fretepass`
-- **Database:** `fretecheck`
+- **Host:** localhost
+- **Porta:** 3306
+- **Usuário:** freteuser
+- **Senha:** fretepass
+- **Database:** fretecheck
 
-Você pode acessar usando ferramentas como **DBeaver**, **PgAdmin**, **MySQL Workbench** ou até pelo terminal:
+Você pode acessar usando ferramentas como:
+
+- DBeaver
+- PgAdmin
+- MySQL Workbench
+- ou até pelo terminal:
 
 ```bash
 psql -h localhost -U freteuser -d fretecheck
+```
+
+---
+
+## 📜 Documentação da API (Swagger)
+
+A API possui uma documentação interativa gerada com **Swagger (OpenAPI)**.  
+Através dela, é possível visualizar todos os endpoints disponíveis, seus parâmetros e até mesmo testá-los diretamente pelo navegador.
+
+➡️ Acesse: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+---
+
+## 🌐 Endpoints Disponíveis
+
+### Usuários 👤
+
+#### 1. Cadastro de Usuário
+
+- **Método:** POST
+- **Rota:** `/api/usuarios`
+- **Descrição:** Cria um novo usuário no sistema.
+- **Corpo da Requisição (Body):**
+
+```json
+{
+  "nome": "Seu Nome",
+  "email": "seuemail@exemplo.com",
+  "senha": "suasenha"
+}
+```
+
+---
+
+#### 2. Login de Usuário
+
+- **Método:** POST
+- **Rota:** `/api/usuarios/login`
+- **Descrição:** Autentica um usuário com base no email e senha.
+- **Corpo da Requisição (Body):**
+
+```json
+{
+  "email": "seuemail@exemplo.com",
+  "senha": "suasenha"
+}
 ```
 
 ---
@@ -63,22 +114,26 @@ FreteCheck-Back-End/
 
 ## 🐳 Comandos Úteis do Docker
 
-Parar os containers:
+- Parar os containers:
+
 ```bash
 docker-compose down
 ```
 
-Ver logs do banco:
+- Ver logs do banco:
+
 ```bash
 docker-compose logs -f
 ```
 
-Reiniciar o banco:
+- Reiniciar o banco:
+
 ```bash
 docker-compose restart
 ```
 
-Remover tudo (incluindo volume/dados):
+- Remover tudo (incluindo volume/dados):
+
 ```bash
 docker-compose down -v
 ```
@@ -87,12 +142,12 @@ docker-compose down -v
 
 ## 👨🏽‍💻 Desenvolvedores
 
-Os desenvolvedores deste projeto são:
-+ Vagner Ferreira Lima Junior: [@vagnerflj](https://github.com/vagnerflj)
-+ Eliphaz Gabriel Ferra Pedroso: [@eliphazGFP](https://github.com/eliphazGFP)
-+ João Gabriel Antunes Castilho: [@oJoao27](https://github.com/oJoao27)
+- **Vagner Ferreira Lima Junior** - [@vagnerflj](https://github.com/vagnerflj)
+- **Eliphaz Gabriel Ferra Pedroso** - [@eliphazGFP](https://github.com/eliphazGFP)
+- **João Gabriel Antunes Castilho** - [@oJoao27](https://github.com/oJoao27)
 
 ---
 
 ## 👨‍🏫 Instrutores
-*(adicione aqui os instrutores do projeto)*  
+
+_Adicione aqui os instrutores do projeto._
