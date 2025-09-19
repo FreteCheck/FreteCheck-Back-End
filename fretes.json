@@ -1,0 +1,49 @@
+{
+  "Frete": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "1" },
+          "origem": { "S": "Sao Paulo" },
+          "destino": { "S": "Curitiba" },
+          "descricao": { "S": "Carga ate 300kg - 800" },
+          "valor": { "N": "800" },
+          "status": { "S": "Disponivel" },
+          "motorista": { "S": "Carlos Silva" },
+          "telefone": { "S": "11988881122" },
+          "rating": { "N": "4.5" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "2" },
+          "origem": { "S": "Curitiba" },
+          "destino": { "S": "Londrina" },
+          "descricao": { "S": "Carga leve - 500" },
+          "valor": { "N": "500" },
+          "status": { "S": "Em andamento" },
+          "motorista": { "S": "Joana Lima" },
+          "telefone": { "S": "41977772233" },
+          "rating": { "N": "4.0" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": { "S": "3" },
+          "origem": { "S": "Rio de Janeiro" },
+          "destino": { "S": "Belo Horizonte" },
+          "descricao": { "S": "Entrega expressa - 1000" },
+          "valor": { "N": "1000" },
+          "status": { "S": "Entregue" },
+          "motorista": { "S": "Rogerio Alves" },
+          "telefone": { "S": "21966663344" },
+          "rating": { "N": "5.0" }
+        }
+      }
+    }
+  ]
+}

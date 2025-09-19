@@ -1,4 +1,4 @@
-package com.example.freteCheck.Repository;
+package com.example.freteCheck.Repository.sql;
 
 import com.example.freteCheck.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

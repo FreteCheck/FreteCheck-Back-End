@@ -2,7 +2,7 @@ package com.example.freteCheck.Service;
 
 import com.example.freteCheck.Dto.LoginRequestDTO;
 import com.example.freteCheck.model.Usuario;
-import com.example.freteCheck.Repository.UsuarioRepository;
+import com.example.freteCheck.Repository.sql.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
