@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
-
 import java.util.*;
 
 @Repository
@@ -15,7 +14,7 @@ public class FreteRepository {
     private final DynamoDbClient dynamoDbClient;
     private final String tableName = "Frete";
 
-    public void save(Frete frete) {
+    public Frete save(Frete frete) {
         Map<String, AttributeValue> item = new HashMap<>();
         item.put("id", AttributeValue.builder().s(frete.getId()).build());
         item.put("origem", AttributeValue.builder().s(frete.getOrigem()).build());
@@ -31,6 +30,7 @@ public class FreteRepository {
                 .tableName(tableName)
                 .item(item)
                 .build());
+        return frete;
     }
 
     public Optional<Frete> findById(String id) {

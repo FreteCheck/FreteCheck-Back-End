@@ -4,7 +4,6 @@ import com.example.freteCheck.Repository.nosql.FreteRepository;
 import com.example.freteCheck.model.Frete;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -14,21 +13,19 @@ public class FreteService {
 
     private final FreteRepository freteRepository;
 
-    public void salvar(Frete frete) {
-        freteRepository.save(frete);
+    public List<Frete> listarTodos() {
+        return freteRepository.findAll();
     }
 
     public Optional<Frete> buscarPorId(String id) {
         return freteRepository.findById(id);
     }
 
-    public List<Frete> listarTodos() {
-        return freteRepository.findAll();
+    public Frete salvar(Frete frete) {
+        return freteRepository.save(frete); // agora retorna Frete
     }
 
     public void deletar(String id) {
         freteRepository.deleteById(id);
     }
 }
-
-
