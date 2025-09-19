@@ -2,9 +2,10 @@
 
 ## 📦 Banco de Dados
 
-Este projeto utiliza **MySQL 8.0** com **Docker Compose** para facilitar a configuração e garantir que toda a equipa utilize o mesmo ambiente.  
+Este projeto utiliza 
+- **MySQL 8.0** com **Docker Compose** para facilitar a configuração e garantir que toda a equipa utilize o mesmo ambiente.  
 A estrutura inicial da base de dados (tabelas) está definida no ficheiro `schema.sql`.
-
+- **DynamoDB (NoSQL)** → Fretes, via **LocalStack** em Docker (simula a AWS localmente)
 ---
 
 ## ⚙️ Requisitos para Iniciar a Base de Dados
@@ -13,6 +14,7 @@ Antes de rodar, certifique-se de ter instalado na sua máquina uma ferramenta de
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - ou [Rancher Desktop](https://rancherdesktop.io/) (uma excelente alternativa que se mostrou eficaz durante o desenvolvimento)
+- [AWS CLI](https://docs.aws.amazon.com/cli/) instalado para interagir com o DynamoDB
 
 ---
 
@@ -29,7 +31,11 @@ cd FreteCheck-Back-End
 docker-compose up -d
 ```
 
-Após executar o comando acima, o banco estará rodando em segundo plano.
+Após executar o comando acima isso iniciará:
+
+- MySQL na porta 3306
+
+- LocalStack (DynamoDB) na porta 4566
 
 ---
 
@@ -53,7 +59,40 @@ psql -h localhost -U freteuser -d fretecheck
 ```
 
 ---
+## 🛠📦 Acesso ao DynamoDB (LocalStack)
 
+Verifique se o container está rodando:
+
+```bash
+docker ps
+```
+Deve aparecer algo como:
+
+localstack/localstack   ...   0.0.0.0:4566->4566/tcp
+
+Criar tabela Frete
+```bash
+aws dynamodb create-table \
+--table-name Frete \
+--attribute-definitions AttributeName=id,AttributeType=S \
+--key-schema AttributeName=id,KeyType=HASH \
+--billing-mode PAY_PER_REQUEST \
+--endpoint-url http://localhost:4566 \
+--region us-east-1 \
+--profile localstack
+```
+Popular com dados iniciais (fretes.json)
+
+Rode:
+```bash
+aws dynamodb batch-write-item \
+--request-items file://fretes.json \
+--endpoint-url http://localhost:4566 \
+--region us-east-1 \
+--profile localstack
+```
+
+---
 ## 📜 Documentação da API (Swagger)
 
 A API possui uma documentação interativa gerada com **Swagger (OpenAPI)**.  
@@ -99,15 +138,47 @@ Através dela, é possível visualizar todos os endpoints disponíveis, seus par
 ```
 
 ---
+#### Fretes 🚚 (NoSQL - DynamoDB)
+
+#### 1. Listar fretes
+
+- **Método:** GET /api/fretes
+
+
+#### 2.Buscar por ID
+
+- **Método:** GET /api/fretes/{id}
+
+
+#### 3.Criar frete
+
+- **Método:** POST /api/fretes
+
+```json
+{
+"id": "4",
+"origem": "Campinas",
+"destino": "São Paulo",
+"descricao": "Mudança pequena - R$ 300",
+"valor": 300,
+"status": "Disponível",
+"motorista": "Pedro Santos",
+"telefone": "(19) 99999-0000",
+"rating": 4.2
+}
+```
+---
 
 ## 🗂️ Estrutura do Projeto
 
 ```
 FreteCheck-Back-End/
-│── schema.sql              # Estrutura inicial do banco
-│── docker-compose.yml      # Configuração do PostgreSQL com Docker
+│── schema.sql              # Estrutura inicial do banco relacional
+│── fretes.json             # Dados iniciais do DynamoDB
+│── docker-compose.yml      # Configuração dos containers (MySQL + LocalStack)
 │── README.md               # Este guia
 │── src/                    # Código do backend
+
 ```
 
 ---
